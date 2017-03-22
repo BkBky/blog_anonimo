@@ -1,0 +1,23 @@
+<h1>Post del tag</h1>
+<table>
+  <tr>
+    <th width="25">ID</th>
+    <th width="450">Publicaciones</th>
+    
+    <th></th>
+  </tr>
+
+
+<% @tag.sort.each do |post| %>
+  <tr>
+    <td> <%= post.id %>  </td>
+    <td><b> <%= post.title %></b><br>
+            <%= post.body %>  </td>
+    <td>
+      <a href="/delete/<%= post.id %>">Borrar</a><br>
+      <a href="/update/<%= post.id %>">Editar</a>
+    </td>
+  </tr>
+<% end %>
+
+</table>

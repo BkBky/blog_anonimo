@@ -1,0 +1,33 @@
+
+<h1>Estos son todos los post creados</h1>
+<div class="menu">
+  <p>Crear un post <a href="/create"> Haz click </a><p>
+  <p>Mostrar todos tags <a href="/tags"> Haz click </a> <p>    
+</div>
+<table>
+  <tr>
+    <th width="25">ID</th>
+    <th width="450">Publicaciones</th>
+    
+    <th>Tags</th>
+    <th width="50">Edición</th>
+  </tr>
+
+<% @post.sort.each_with_index do |post, index| %>
+  <tr>
+    <td> <%= post.id %>. </td>
+    <td><b> <%= post.title %> </b><br>
+        <%= post.body %> </td>
+
+    <td> <% post.tags.each do |t| %>
+          <%= t.tag %><br>
+         <% end %>
+    </td>
+    <td>
+      <a href="/delete/<%= post.id %>">Borrar</a><br>
+      <a href="/update/<%= post.id %>">Editar</a>
+    </td>
+  </tr>
+<% end %>
+
+</table>

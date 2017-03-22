@@ -1,0 +1,23 @@
+<h1>Editar post</h1>
+<form action="/edit/<%= @edit.id %>" method="post">
+
+    <p> Edita el título </p>
+    <input name="post[title]" type="text"  value="<%= @edit.title %>">
+    <br>
+    <p> Edita el contenido</p>
+    <textarea name="post[body]" rows="20" cols="70"><%= @edit.body %>"</textarea>
+    <br>
+    <p>  Edita tu tags</p>
+    <% @edit_tags.each do |tag| %>
+      <input type="text" name="tags[<%= tag.tag %>]" value="<%= tag.tag %>">
+    <%end%>
+    <br><br>
+    <input type="submit" value="Editar post">
+</form>
+<div class="menu">
+  <p>Ver todos los post<a href="/post_print"> Haz click </a> <p>
+</div>  
+
+
+
+ 

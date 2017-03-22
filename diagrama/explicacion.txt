@@ -1,0 +1,74 @@
+Se uso el .strip (ver controller/post.rb) / linea 46, 75 y 76) para eilinar los espacios en blanco del input del usuario..
+
+En view / update.erb, en  name="tags[<%= tag.tag %>]", estamos recolectando todos los argumentos que nos regrese el ususario. Estos es un hash que contiene
+otro hash con sus keys y values. éstos son enviado a "controller/post.rb/ linea 67"
+
+
+En controller/post.rb/ linea 79 es nececesario remover los tags que han sido actualizados por el usuario en la vista de 'editar el post'.
+
+En controller/post.rb/ linea 49 tenemos que
+'post.tags << verify_tag' es lo mismo es lo mismo que escribir :
+        #PostTag.create(post_id: post.id, tag_id: tag.id) 
+
+
+En este ejercicio constatemente estamos enviando parámetros a través de url y el id de un post.
+
+Este ejercicio fue hecho con sinatra . Corremos shotgun.config.ru
+
+
+
+En controller/post.rb/ linea 43 estoy usando 'post.valid?' para verificar que se ha creado un neuvo post.  Es posible que me falten las valida.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+En view/update.erb, incialmente usé textarea, pero terminé usando el input.
+
+........
+<h1>Editar post</h1>
+<form action="/edit/<%= @edit.id %>" method="post">
+
+    <input type="hidden" name="_method" value="PUT">
+    <p> Edita el título </p>
+    <input name="post[title]" type="text"  value="<%= @edit.title %>">
+    <br>
+    <p> Edita el contenido</p>
+    <textarea name="post[body]" rows="20" cols="70"><%= @edit.body %>"</textarea>
+    <br>
+    <p>  Edita tu tags</p>
+    <textarea name="tag[tags]" rows="20" cols="70" ><% @edit.tags.each do |t| %>
+    <%= t.tag+(",") %>
+    <% end %>
+    </textarea>
+    <input type="submit" value="Editar post">
+</form>
+<div class="menu">
+  <p>Regresar<a href="/post_print"> Haz click </a> <p>
+</div>  
+........código del controller/post.rb que parece qeu sí funciona con el código
+de la vista qeu esta aquí arriba.
+Terminé usando el input y un código diferente en el controller, para poder seguir la explicación que nos dieron.
+:
+
+put "/edit/:id" do
+  tags = params[:tag][:tags]
+  post = Post.find(params[:id])
+  # el params[:post] viene de view/update.erb/ name="post[body] y name="post[title]"
+  post.update(params[:post])
+  
+  tags.split(',').each do |tag|
+  verify_tag = Tag.find_by(tag: tag)
+    if verify_tag == tag[0][1]
+       post.tags << Tag.create(tag: tag)
+    end 
+  end
+  redirect to("/post/#{post.id}")
+end
+
+#borrar post
+delete '/delete/:id' do
+  post = Post.find(params[:id])
+  post.destroy
+  redirect to ('/')
+end
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

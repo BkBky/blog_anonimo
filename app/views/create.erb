@@ -1,0 +1,18 @@
+<h1>Crear un nuevo post</h1>
+
+ <form action="/create" method="post">
+    <p> Escribe un  título para tu post </p>
+    <input type="text" name="title">
+    <br>
+    <p> Escribe el contenido</p>
+    <textarea name="body" rows="20" cols="70" ></textarea>
+    <br>
+    <p>  Introduce tus tags </p>
+    <p class="messages">Sepáralas por comas.<br>
+        Puedes agregar nuevas tags<p>
+    <label for="post_tags">Tags:</label>
+    <input id="post_tags" name="post[tags]" value="complementos, fitness, recetas">
+    <br>
+    <br>
+    <input type="submit" value="Submit post">
+  </form>  

@@ -1,0 +1,26 @@
+<h1>Nuevo  post</h1>
+<table>
+  <tr>
+    <th width="25">ID</th>
+    <th width="500">Publicación</th>
+    <th width="500">Tags</th>
+  </tr>
+  <tr>
+    <td><%= @post.id %></td>
+    <td><b><%= @post.title %></b><br>
+        <%= @post.body %>
+    </td>
+    <td>
+    <% @post.tags.each do |t| %>
+      <%= t.tag+(",") %>
+    <% end %>
+    </td>
+  </tr>
+</table>
+
+ 
+<div class="menu">
+  <p>Crear un post <a href="/create"> Haz click </a><p>
+  <p>Mostrar todos los posts <a href="/post_print"> Haz click </a> <p>  
+  <p>Mostrar todos tags <a href="/tags"> Haz click </a> <p>    
+</div>

@@ -1,0 +1,66 @@
+<textarea name="tag[tags]" rows="5" cols="70" ><% @edit.tags.each do |t| %><%=t.tag+(",")%><% end %></textarea>
+
+·········································
+
+<% @edit_tags.each do |tag| %>
+      <input type="text" name="tags[<%= tag.tag %>]" value="<%= tag.tag %>">
+    <%end%>
+
+·········································
+
+
+ # if tags == ""
+
+    #   p "estoy vacio"
+    #   p PostTag.where(tag_id: tags.id)
+      # tagpost = Tag.where(tag: tag)
+      # #p post.tags
+      # #'post.tags' es lo mismo que 'Post.find(params[:id]).tags'
+      # tagpost.destroy
+    # else
+    #   tags.split(',').each do |tag|
+    #     verify_tag = Tag.find_by(tag: tag)
+    #     if verify_tag == tag[0][1]
+    #       post.tags << Tag.create(tag: tag)
+    #     end 
+    #   end
+
+    #end
+
+
+
+  
+  #  redirect to("/post/#{post.id}")
+
+
+
+·········································
+
+
+  post "/edit/:id" do
+  tags = params[:tags]
+  post = Post.find(params[:id])
+  # el params[:post] viene de view/update.erb/ name="post[body] y name="post[title]"
+  post.update(params[:post])
+  #iterate the hash where old tag is the key and new_tag is de value
+   tags.each do |old_tag, new_tag|
+    
+    unless old_tag == new_tag
+     
+      #Disassociate tag
+      removed_tag = Tag.find_by(TAG: old_tag)
+      post.tags.delete(removed_tag)
+      #Associate tag
+      tag = Tag.find_by(TAG: new_tag)
+      if tag
+        post.tags << tag
+      else
+        created_tag = Tag.create(TAG: new_tag)
+        post.tags << created_tag
+      end
+     end
+  end
+  redirect to("/post/#{post.id}")
+end
+
+·········································

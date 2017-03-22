@@ -1,0 +1,23 @@
+irb(main):004:0> Tag.all
+D, [2017-03-14T16:16:12.260115 #20092] DEBUG -- :   Tag Load (0.5ms)  SELECT "tags".* FROM "tags"
+=> #<ActiveRecord::Relation [#<Tag id: 1, tag: "complementos">, #<Tag id: 2, tag: " fitness">, #<Tag id: 3, tag: " recetas">, #<Tag id: 4, tag: "perico">, #<Tag id: 5, tag: " colombia">, #<Tag id: 6, tag: "colombia">]>
+irb(main):005:0> Tag.find(5)
+D, [2017-03-14T16:17:34.768834 #20092] DEBUG -- :   Tag Load (0.3ms)  SELECT  "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+=> #<Tag id: 5, tag: " colombia">
+irb(main):006:0> Tag.find(5).strip
+D, [2017-03-14T16:17:39.487195 #20092] DEBUG -- :   Tag Load (0.5ms)  SELECT  "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+NoMethodError: undefined method `strip' for #<Tag id: 5, tag: " colombia">
+  from /Users/codea_mac_09/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/activemodel-5.0.2/lib/active_model/attribute_methods.rb:433:in `method_missing'
+  from (irb):6
+  from /Users/codea_mac_09/.rbenv/versions/2.2.4/bin/irb:11:in `<main>'
+irb(main):007:0> Tag.find(5).tag
+D, [2017-03-14T16:17:50.271654 #20092] DEBUG -- :   Tag Load (0.5ms)  SELECT  "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+=> " colombia"
+irb(main):008:0> Tag.find(5).tag.strip
+D, [2017-03-14T16:17:53.711669 #20092] DEBUG -- :   Tag Load (0.5ms)  SELECT  "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+=> "colombia"
+irb(main):009:0> Tag.find(6)
+D, [2017-03-14T16:36:24.795424 #20092] DEBUG -- :   Tag Load (1.8ms)  SELECT  "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2  [["id", 6], ["LIMIT", 1]]
+=> #<Tag id: 6, tag: "colombia">
+irb(main):010:0> Tag.find(5)
+D, [2017-03-14T16:36:31.367300 #20092] DEBUG -- :   Tag Load (0.7ms)  SELECT  "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]

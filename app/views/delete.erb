@@ -1,0 +1,26 @@
+<h1>Este es el post que quieres borrar</h1>
+<table>
+  <tr>
+    <th width="25">ID</th>
+    <th width="500">Publicación</th>
+  </tr>
+  <tr>
+    <td><%= @delete.id %></td>
+    <td>
+      <b><%= @delete.title %></b><br>
+      <%= @delete.body %> 
+    </td>
+  </tr>
+</table>
+
+<div class="menu">
+  <br><br>
+  <p>Crear un post <a href="/create"> Haz click </a><p>
+  <p>Mostrar todos los posts <a href="/post_print"> Haz click </a> <p>    
+</div> 
+<div>
+  <form action="/delete/<%= @delete.id %>" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Borrar">
+  </form>
+</div>

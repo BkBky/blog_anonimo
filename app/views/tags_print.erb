@@ -1,0 +1,19 @@
+<h1>Estos son todos tus tags</h1>
+<table>
+  <tr>
+    <th width="25">ID</th>
+    <th width="450">Tag</th>
+    <th></th>
+  </tr>
+
+<% @tag.sort.each do |tags| %>
+  <tr>
+    <td> <%= tags.id %>. </td>
+    <td> <%= tags.tag %> </td>
+    <td> <a href="tags/<%= tags.id %>"> Mostrar sus posts </a> </td>
+  </tr>
+<% end %>
+</table>
+<br><br>
+   
+    <td><a href="/">Regresar a inicio</a><br></td>

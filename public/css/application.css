@@ -1,0 +1,36 @@
+.container {
+  margin: 20px auto;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: 1px dotted black;
+}
+th {
+  text-align: left;
+  border: 1px solid #000;
+}
+
+td {
+  border: 1px solid #000;
+}
+
+
+.menu{
+  font-family: Arial, Helvetica;
+  color: #444f60;
+  font-size: 16px;
+}
+
+.messages{
+  font-size: 14px;
+  color:#84051a;
+}
+
+.messages_two{
+  margin: auto 0;
+  display: block;
+  border: none;
+  color:red;
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+}

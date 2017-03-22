@@ -1,0 +1,31 @@
+$ bundle update
+
+
+$ rake generate:model NAME=Post    
+#class Post < ActiveRecord::Base
+#end 
+
+$ rake generate:migration NAME=create_posts
+#class CreatePost < ActiveRecord::Migration
+#  def change
+#  end
+#end
+
+
+$ rake generate:model NAME=Tag
+$ rake generate:migration NAME=create_tags
+
+$ rake generate:model NAME=PostTag
+$ rake generate:migration NAME=create_post_tags
+
+#class CreatePostTags < ActiveRecord::Migration
+#  def change
+#  end
+#end
+
+
+
+
+*******************************
+Link para documentación acerca del GET, POST, PUT, DELETE
+http://fernando-gaitan.com.ar/ruby-on-rails-parte-14-crud-y-rest/
